@@ -12,20 +12,15 @@ const App = () => {
   ]);
 
   const toggleTaskCompletion = (id: string) => {
-    setTasks((prevTasks) => {
-      return prevTasks.map((task) => {
-        if (task.id === id) {
-          return { ...task, completed: !task.completed };
-        }
-        return task;
-      });
-    });
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
   };
 
   const removeTask = (id: string) => {
-    setTasks((prevTasks) => {
-      return prevTasks.filter((task) => task.id !== id);
-    });
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   };
 
   const addTask = (text: string) => {
@@ -34,20 +29,40 @@ const App = () => {
       text,
       completed: false,
     };
-    setTasks([...tasks, newTask]);
+    setTasks((prevTasks) => [...prevTasks, newTask]);
   };
 
   return (
     <div className="App">
-      {tasks.map((task) => (
-        <Task
-          key={task.id}
-          task={task}
-          onToggleCompletion={toggleTaskCompletion}
-          onDelete={removeTask}
-        />
-      ))}
       <TaskForm onAddTask={addTask} />
+      <div className="task-columns">
+        <div className="column">
+          <h3 className="column-header">Active Tasks</h3>
+          {tasks
+            .filter((task) => !task.completed)
+            .map((task) => (
+              <Task
+                key={task.id}
+                task={task}
+                onToggleCompletion={toggleTaskCompletion}
+                onDelete={removeTask}
+              />
+            ))}
+        </div>
+        <div className="column">
+          <h3 className="column-header">Completed Tasks</h3>
+          {tasks
+            .filter((task) => task.completed)
+            .map((task) => (
+              <Task
+                key={task.id}
+                task={task}
+                onToggleCompletion={toggleTaskCompletion}
+                onDelete={removeTask}
+              />
+            ))}
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,32 +1,78 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-} 
-.task {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  margin: 5px;
-  border: 1px solid #ccc;
-}
-
-.task .completed {
-  text-decoration: line-through;
-}
-
 .taskForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 20px;
+  padding: 10px;
+  border: 5px solid #ccc;
 }
 
 .taskForm input,
 .taskForm button {
-  margin-right: 10px;
+  margin: 7px; 
 }
 
-.App {
-  font-family: Arial, sans-serif;
-  margin: 20px;
+.task-columns {
+  display: flex;
+  justify-content: space-around;
+}
+
+.column {
+  width: 550px;
+  margin: 40px;
+  padding: 10px;
+  border: 5px solid #ccc;
+  border-radius: 5px;
+}
+
+.column-header {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.taskForm button {
+  background-color: #808080;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  font-weight: bold;
+}
+
+.task button.delete {
+  background-color: #ff0000;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.task button.complete {
+  background-color: #008000;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.task button.restore {
+  background-color: #808080; 
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
 }
